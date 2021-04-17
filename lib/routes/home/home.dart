@@ -4,7 +4,8 @@ import 'package:putty/models/search_item.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
 import 'package:putty/routes/home/account_tab.dart';
 import 'package:putty/routes/home/map_tab.dart';
-import 'package:putty/routes/home/search_tab.dart';
+import 'package:putty/routes/home/animals_tab.dart';
+import 'package:putty/routes/home/points_tab.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   PageController _controller = PageController();
 
   Map<String, IconData> _bottomNavigatorRoutes = {
-    'Map': Icons.map_outlined,
-    'Search': Icons.search_outlined,
+    'Animal': Icons.pets,
+    'Points': Icons.explore,
     'Account': Icons.person_outlined,
   };
 
@@ -65,8 +66,8 @@ class _HomePageState extends State<HomePage> {
               controller: _controller,
               onPageChanged: (idx) => setState(() => _currentPage = idx),
               children: [
-                MapTab(key: _mapTabState),
-                SearchTab(searchTabClickController: _searchTabClickController),
+                AnimalTab(searchTabClickController: _searchTabClickController),
+                PointsTab(searchTabClickController: _searchTabClickController),
                 AccountTab(),
               ],
             ),

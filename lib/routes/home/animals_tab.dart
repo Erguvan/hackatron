@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:putty/models/animal.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
 
-class SearchTab extends StatefulWidget {
-  SearchTab({required this.searchTabClickController});
+class AnimalTab extends StatefulWidget {
+  AnimalTab({required this.searchTabClickController});
 
   final SearchTabClickController searchTabClickController;
 
   @override
-  _SearchTabState createState() => _SearchTabState();
+  _AnimalTabState createState() => _AnimalTabState();
 }
 
-class _SearchTabState extends State<SearchTab> {
+class _AnimalTabState extends State<AnimalTab> {
   @override
   Widget build(BuildContext context) {
     Query query = FirebaseFirestore.instance.collection('putties');
