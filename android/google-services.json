@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "228843325218",
+    "project_id": "putty-54d8e",
+    "storage_bucket": "putty-54d8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228843325218:android:a5ca695a29035db1e3477b",
+        "android_client_info": {
+          "package_name": "org.putty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228843325218-smjea2siq8493t0cjmg0a9e2aka7trlh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.putty",
+            "certificate_hash": "dcf349e4325401d4ee2519d159f9f75deca593b9"
+          }
+        },
+        {
+          "client_id": "228843325218-drafa1s2j3ike155c7g4j2jbsg659bpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdTckqD4PjB8tQfPXtoijf-UZWwwPe79k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228843325218-drafa1s2j3ike155c7g4j2jbsg659bpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
