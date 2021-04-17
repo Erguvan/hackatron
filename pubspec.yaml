@@ -20,6 +20,7 @@ dependencies:
   # flutter_local_notifications:
   # firebase_auth: ^0.18.3
   http: '>=0.13.0'
+  location: ^4.1.1
 
 dev_dependencies:
   flutter_test:
