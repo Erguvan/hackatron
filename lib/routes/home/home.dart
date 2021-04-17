@@ -3,7 +3,6 @@ import 'package:putty/const.dart';
 import 'package:putty/models/search_item.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
 import 'package:putty/routes/home/account_tab.dart';
-
 import 'package:putty/routes/home/map_tab.dart';
 import 'package:putty/routes/home/search_tab.dart';
 

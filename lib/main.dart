@@ -1,19 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:putty/const.dart';
 import 'package:putty/routes/home/home.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 
+bool USE_FIRESTORE_EMULATOR = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  // runApp(MyApp());
   _initFirebase().then((_) => runApp(MyApp()));
 }
 
 _initFirebase() async {
   try {
     await Firebase.initializeApp();
+    if (USE_FIRESTORE_EMULATOR) {
+      FirebaseFirestore.instance.settings = const Settings(
+          host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
+    }
   } catch (e) {}
 }
 
