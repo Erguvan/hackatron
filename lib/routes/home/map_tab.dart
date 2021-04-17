@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
-import 'package:putty/network/map/get_location.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:location/location.dart';
 
 class MapTab extends StatefulWidget {
   @override
@@ -9,12 +11,56 @@ class MapTab extends StatefulWidget {
 }
 
 class _MapTabState extends State<MapTab> {
+  final Location location = Location();
+
+  late double defx, defy;
+
+  LocationData? _location;
+  String? _error;
+
+  Future<void> _getLocation() async {
+    setState(() {
+      _error = null;
+    });
+    try {
+      final LocationData _locationResult = await location.getLocation();
+      setState(() {
+        _location = _locationResult;
+      });
+    } on PlatformException catch (err) {
+      setState(() {
+        _error = err.code;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocation();
+    print('Location: ' + (_error ?? '${_location ?? "unknown"}'));
+  }
+
   final controller = MapController(
     location: LatLng(39.92524128151174, 32.83692009925839),
   );
 
   void _gotoDefault() {
     controller.center = LatLng(39.92524128151174, 32.83692009925839);
+  }
+
+  void goToLocation(String location) {
+    try {
+      var latlng = location.split(',');
+      print(latlng);
+      controller.center = LatLng(
+        double.parse(latlng[0].trim()),
+        double.parse(latlng[1].trim()),
+      );
+      setState(() {});
+    } catch (e) {
+      rethrow;
+    }
   }
 
   void _onDoubleTap() {
