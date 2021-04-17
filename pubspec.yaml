@@ -11,16 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  latlng: any
-  map: ^0.3.0
-  # firebase_core: ^0.5.2
-  # cloud_firestore: ^0.14.3
-  # firebase_messaging: ^7.0.3
-  # flutter_local_notifications:
-  # firebase_auth: ^0.18.3
-  http: '>=0.13.0'
+  http: ^0.13.1
+  latlng: ^0.1.0
   location: ^4.1.1
+  map: ^0.3.0
+
 
 dev_dependencies:
   flutter_test:
