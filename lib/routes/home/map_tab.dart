@@ -3,11 +3,24 @@ import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
 class MapTab extends StatefulWidget {
+  MapTab({Key? key}) : super(key: key);
+
   @override
-  _MapTabState createState() => _MapTabState();
+  MapTabState createState() => MapTabState();
 }
 
-class _MapTabState extends State<MapTab> {
+class MapTabState extends State<MapTab> {
+  void goToLocation(String location) {
+    try {
+      var latlng = location.split(',');
+      controller.center = LatLng(
+        double.parse(latlng[0].trim()),
+        double.parse(latlng[1].trim()),
+      );
+      setState(() {});
+    } catch (e) {}
+  }
+
   final controller = MapController(
     location: LatLng(35.68, 51.41),
   );

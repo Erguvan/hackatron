@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:putty/const.dart';
 import 'package:putty/routes/home/home.dart';
 /*
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -59,9 +60,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: APP_NAME,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
       ),
       home: HomePage(),
     );
