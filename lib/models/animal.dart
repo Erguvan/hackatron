@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:putty/models/search_tab_click_controller.dart';
 
 /*
 Animal
@@ -8,15 +9,17 @@ Animal
 name: String
 photo: String
 age: double
-specie: String
+kind: String
 description: String
-
+location: Geolocation
 */
 
 /// A single animal row.
 class Animal extends StatelessWidget {
   /// Contains all snapshot data for a given animal.
   final DocumentSnapshot snapshot;
+
+  //final SearchTabClickController searchTabClickController;
 
   /// Initialize a [Move] instance with a given [DocumentSnapshot].
   Animal(this.snapshot);
@@ -30,7 +33,28 @@ class Animal extends StatelessWidget {
   Widget get poster {
     return SizedBox(
       width: 100,
-      child: Center(child: Image.network(animal['photo'])),
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.transparent,
+                width: 0,
+              ),
+              borderRadius: BorderRadius.circular(100),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.network(
+                  animal['photo'],
+                  width: 48,
+                  height: 48,
+                ).image,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -60,9 +84,9 @@ class Animal extends StatelessWidget {
         child: Row(children: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: Text('Specie: ${animal['specie']}'),
+            child: Text('Kind: ${animal['kind']}'),
           ),
-          Text('Description: ${animal['description']}'),
+          // Text('Description: ${animal['description']}'),
         ]));
   }
 
@@ -70,8 +94,11 @@ class Animal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4, top: 4),
-      child: Row(
-        children: [poster, Flexible(child: details)],
+      child: InkWell(
+        onTap: () {
+          print("click");
+        },
+        child: Row(children: <Widget>[poster, Expanded(child: details)]),
       ),
     );
   }
