@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:putty/const.dart';
 import 'package:putty/models/search_item.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
@@ -51,6 +52,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backwardsCompatibility: false,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+        ),
         title: Text(APP_NAME),
         elevation: 0,
       ),
