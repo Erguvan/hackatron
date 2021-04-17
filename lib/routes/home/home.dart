@@ -71,7 +71,10 @@ class _HomePageState extends State<HomePage> {
               controller: _controller,
               onPageChanged: (idx) => setState(() => _currentPage = idx),
               children: [
-                AnimalTab(searchTabClickController: _searchTabClickController),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: AnimalTab(searchTabClickController: _searchTabClickController),
+                ),
                 PointsTab(searchTabClickController: _searchTabClickController),
                 AccountTab(),
               ],
