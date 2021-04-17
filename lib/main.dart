@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:putty/const.dart';
 import 'package:putty/routes/home/home.dart';
-/*
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-*/
+//import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
-  //_initFirebase().then((_) => runApp(MyApp()));
+  _initFirebase().then((_) => runApp(MyApp()));
 }
 
-/*
 _initFirebase() async {
   try {
     await Firebase.initializeApp();
   } catch (e) {}
 }
-*/
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -32,7 +29,7 @@ class _MyAppState extends State<MyApp> {
         host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
   }
   */
-  // FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  //FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   //String messageTitle = "Empty";
   //String notificationAlert = "alert";
 
