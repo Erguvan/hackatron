@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     );
     Future.delayed(
       Duration(milliseconds: 500),
-      () => _mapTabState.currentState?.goToLocation(item.location),
+      () => _mapTabState.currentState?.goToLocation(item),
     );
   }
 

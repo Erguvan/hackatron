@@ -4,6 +4,8 @@ import 'package:map/map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:putty/models/search_item.dart';
 
 class MapTab extends StatefulWidget {
   MapTab({Key? key}) : super(key: key);
@@ -13,13 +15,14 @@ class MapTab extends StatefulWidget {
 }
 
 class MapTabState extends State<MapTab> {
-  void goToLocation(String location) {
+  void goToLocation(SearchItem item) {
     try {
-      var latlng = location.split(',');
+      var latlng = item.location.split(',');
       controller.center = LatLng(
         double.parse(latlng[0].trim()),
         double.parse(latlng[1].trim()),
       );
+      _lastSearchItem = item;
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -32,6 +35,7 @@ class MapTabState extends State<MapTab> {
 
   TextEditingController _searchController = TextEditingController();
   FocusNode _searchFocusNode = FocusNode();
+  late SearchItem _lastSearchItem;
 
   final controller = MapController(
     location: LatLng(39.92524128151174, 32.83692009925839),
@@ -164,11 +168,11 @@ class MapTabState extends State<MapTab> {
         ),
         child: Container(
           padding: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Colors.black,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                 child: Padding(
@@ -178,12 +182,38 @@ class MapTabState extends State<MapTab> {
                     width: 56,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
-                      color: Color(0x21212121),
+                      color: Color(0x66DEDEDE),
                     ),
                   ),
                 ),
               ),
-              // other components
+              SizedBox(height: 16),
+              Text(
+                _lastSearchItem.name,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              SizedBox(height: 16),
+              FutureBuilder(
+                future: placemarkFromCoordinates(
+                  controller.center.latitude,
+                  controller.center.longitude,
+                ),
+                builder: (_, AsyncSnapshot<List<Placemark>> snapshot) {
+                  var tempLocation = '${controller.center.latitude}, ${controller.center.longitude}';
+                  try {
+                    if (snapshot.data == null) {
+                      if (snapshot.hasError) {
+                        throw snapshot.error!;
+                      }
+                      return Text(tempLocation);
+                    }
+                    var location = snapshot.data?.first;
+                    return Text(location?.name ?? tempLocation);
+                  } catch (e) {
+                    return Text(tempLocation);
+                  }
+                },
+              ),
             ],
           ),
         ),
