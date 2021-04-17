@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:putty/models/search_tab_click_controller.dart';
-
+//import 'package:firebase_core/firebase_core.dart';
+//import 'package:putty/models/search_tab_click_controller.dart';
+import 'package:putty/routes/external_pages/animal.dart';
 /*
 Animal
 
@@ -11,7 +11,8 @@ photo: String
 age: double
 kind: String
 description: String
-location: Geolocation
+location: String
+posted_by:  String
 */
 
 /// A single animal row.
@@ -97,6 +98,19 @@ class Animal extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print("click");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AnimalDetail(
+                        age: animal['age'],
+                        kind: animal['kind'],
+                        name: animal['name'],
+                        photo: animal['photo'],
+                        description: animal['description'],
+                        expected: animal['expected'],
+                        posted_by: animal['posted_by'],
+                        location: animal['location'],
+                      )));
         },
         child: Row(children: <Widget>[poster, Expanded(child: details)]),
       ),
