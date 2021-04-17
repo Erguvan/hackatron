@@ -63,7 +63,8 @@ class _MyAppState extends State<MyApp> {
       title: APP_NAME,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.deepOrange,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
       ),

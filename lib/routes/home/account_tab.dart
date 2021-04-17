@@ -8,6 +8,12 @@ class AccountTab extends StatefulWidget {
 class _AccountTabState extends State<AccountTab> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text('Coming soon...'),
+      ],
+    );
   }
 }

@@ -20,6 +20,12 @@ class MapTabState extends State<MapTab> {
         double.parse(latlng[0].trim()),
         double.parse(latlng[1].trim()),
       );
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (_) => _bottomSheet,
+      );
       setState(() {});
     } catch (e) {}
   }
@@ -96,7 +102,10 @@ class MapTabState extends State<MapTab> {
                   },
                 ),
                 Center(
-                  child: Icon(Icons.close, color: Colors.red),
+                  child: Icon(
+                    Icons.place,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
@@ -146,4 +155,36 @@ class MapTabState extends State<MapTab> {
       ),
     );
   }
+
+  Widget get _bottomSheet => ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(16),
+          color: Colors.white,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Container(
+                    height: 4,
+                    width: 56,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: Color(0x21212121),
+                    ),
+                  ),
+                ),
+              ),
+              // other components
+            ],
+          ),
+        ),
+      );
 }

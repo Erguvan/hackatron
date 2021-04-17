@@ -29,7 +29,10 @@ class _HomePageState extends State<HomePage> {
       duration: Duration(milliseconds: 250),
       curve: Curves.easeInOut,
     );
-    Future.delayed(Duration(milliseconds: 500), () => _mapTabState.currentState?.goToLocation(item.location));
+    Future.delayed(
+      Duration(milliseconds: 500),
+      () => _mapTabState.currentState?.goToLocation(item.location),
+    );
   }
 
   GlobalKey<MapTabState> _mapTabState = GlobalKey<MapTabState>();
