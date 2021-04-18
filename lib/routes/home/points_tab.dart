@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:putty/models/points.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
+import 'package:putty/widgets/custombody.dart';
 
 class PointsTab extends StatefulWidget {
   PointsTab({required this.searchTabClickController});
@@ -19,24 +20,27 @@ class _PointsTabState extends State<PointsTab> {
     Query query = FirebaseFirestore.instance.collection('points');
 
     return Scaffold(
-        body: StreamBuilder<QuerySnapshot>(
-      stream: query.snapshots(),
-      builder: (context, stream) {
-        if (stream.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
+        body: BaseBodyLayout(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: query.snapshots(),
+              builder: (context, stream) {
+                if (stream.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-        if (stream.hasError) {
-          return Center(child: Text(stream.error.toString()));
-        }
+                if (stream.hasError) {
+                  return Center(child: Text(stream.error.toString()));
+                }
 
-        QuerySnapshot querySnapshot = stream.data!;
+                QuerySnapshot querySnapshot = stream.data!;
 
-        return ListView.builder(
-          itemCount: querySnapshot.size,
-          itemBuilder: (context, index) => Points(querySnapshot.docs[index]),
-        );
-      },
-    ));
+                return ListView.builder(
+                  itemCount: querySnapshot.size,
+                  itemBuilder: (context, index) =>
+                      Points(querySnapshot.docs[index]),
+                );
+              },
+            ),
+            asset: "assets/backpattern.jpg"));
   }
 }

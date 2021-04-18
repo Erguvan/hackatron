@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
               onPageChanged: (idx) => setState(() => _currentPage = idx),
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(0),
                   child: AnimalTab(
                       searchTabClickController: _searchTabClickController),
                 ),

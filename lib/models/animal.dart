@@ -74,7 +74,7 @@ class Animal extends StatelessWidget {
 
   /// Return the animal name.
   Widget get name {
-    return Text('${animal['name']} (${animal['age']})',
+    return Text('${animal['name']} (${animal['age']} months)',
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
   }
 
@@ -94,8 +94,9 @@ class Animal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4, top: 4),
+      padding: const EdgeInsets.only(bottom: 8, top: 8),
       child: InkWell(
+        borderRadius: BorderRadius.circular(12.0),
         onTap: () {
           print("click");
           Navigator.push(
@@ -112,7 +113,18 @@ class Animal extends StatelessWidget {
                         location: animal['location'],
                       )));
         },
-        child: Row(children: <Widget>[poster, Expanded(child: details)]),
+        child: Container(
+          padding: EdgeInsets.all(12.0),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black26, offset: Offset(0, 1), blurRadius: 2.0)
+            ],
+            borderRadius: BorderRadius.circular(12.0),
+            color: Colors.grey,
+          ),
+          child: Row(children: <Widget>[poster, Expanded(child: details)]),
+        ),
       ),
     );
   }
