@@ -18,92 +18,105 @@ class SignInState extends State<SignInGoogle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: BaseBodyLayout(
-            asset: 'assets/backpattern.jpg',
-            child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(0, 1),
-                        blurRadius: 2.0)
-                  ],
-                  borderRadius: BorderRadius.circular(12.0),
-                  color: Colors.grey,
+      backgroundColor: Colors.white,
+      body: BaseBodyLayout(
+        asset: 'assets/backpattern.jpg',
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(color: Colors.black26, offset: Offset(0, 1), blurRadius: 2.0)],
+              borderRadius: BorderRadius.circular(12.0),
+              color: Colors.grey[800],
+            ),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Center(
+                    child: Container(
+                      width: 200,
+                      height: 150,
+                      child: Icon(
+                        Icons.pets,
+                        color: Colors.grey[200],
+                        size: 72.0,
+                      ),
+                    ),
+                  ),
                 ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 60.0),
-                      child: Center(
-                        child: Container(
-                          width: 200,
-                          height: 150,
-                          child: Icon(
-                            Icons.pets,
-                            color: Colors.black87,
-                            size: 72.0,
-                          ),
-                        ),
-                      ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                      hintText: 'Enter valid email id as abc@gmail.com',
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                            hintText: 'Enter valid email id as abc@gmail.com'),
-                      ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                      hintText: 'Enter secure password',
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 15.0, right: 15.0, top: 15, bottom: 0),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password',
-                            hintText: 'Enter secure password'),
-                      ),
-                    ),
-                    // ignore: deprecated_member_use
-                    FlatButton(
-                      onPressed: () {},
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 16),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         'Forgot Password',
-                        style: TextStyle(
-                            color: Colors.orangeAccent[600], fontSize: 15),
+                        style: TextStyle(color: Colors.orangeAccent[600], fontSize: 15),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: 250,
-                      decoration: BoxDecoration(
-                          color: Colors.orange[800],
-                          borderRadius: BorderRadius.circular(20)),
-                      // ignore: deprecated_member_use
-                      child: FlatButton(
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context, MaterialPageRoute(builder: (_) => HomePage()));
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(color: Colors.white, fontSize: 25),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text('New User? Create Account')
-                  ],
+                  ),
                 ),
-              ),
-            )));
+                InkWell(
+                  onTap: () {
+                    //print("click");
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).accentColor.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                      color: Theme.of(context).accentColor,
+                    ),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 32),
+                Text('New User? Create Account'),
+                SizedBox(height: 16),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
