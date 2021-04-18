@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                       searchTabClickController: _searchTabClickController),
                 ),
                 PointsTab(searchTabClickController: _searchTabClickController),
-                AccountTab(),
+                SignInGoogle(),
               ],
             ),
           ),

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:putty/models/points.dart';
 import 'package:putty/models/search_tab_click_controller.dart';

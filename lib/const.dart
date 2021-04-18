@@ -1,1 +1,1 @@
-const APP_NAME = "putty";
+const APP_NAME = "Putty";
