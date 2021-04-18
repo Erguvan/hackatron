@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:putty/models/search_item.dart';
+import 'package:putty/routes/external_pages/map_tab.dart';
 
 /*
 Point
@@ -85,7 +88,7 @@ class Points extends StatelessWidget {
 
   /// Return the point name.
   Widget get name {
-    return Text('${point['name']} (${point['mission']})',
+    return Text('${point['name']}',
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
   }
 
@@ -111,12 +114,14 @@ class Points extends StatelessWidget {
     }
     return Padding(
         padding: const EdgeInsets.only(top: 8),
-        child: Row(children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text('Importance: ${importance}'),
-          ),
-        ]));
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Text('Importance: ${importance}'),
+              Text('Mission: ${point['mission']}'),
+            ]));
   }
 
   @override
@@ -126,9 +131,60 @@ class Points extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print("click");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                      appBar: PreferredSize(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Theme.of(context)
+                                        .scaffoldBackgroundColor
+                                        .withAlpha(200),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
+                            AppBar(
+                              // brightness: Brightness.light,
+                              backwardsCompatibility: false,
+                              systemOverlayStyle: SystemUiOverlayStyle(
+                                statusBarColor: Colors.transparent,
+                              ),
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              leading: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        preferredSize: Size.fromHeight(56),
+                      ),
+                      body: MapTab(new SearchItem(
+                          photo: point['name'], // It is fuzzy and not needed.
+                          name: point['name'],
+                          location: point['location'])))));
           //aha buraya harita zıkkımı eklenecek
         },
-        child: Row(children: <Widget>[urgency, Expanded(child: details)]),
+        child: Row(children: <Widget>[
+          urgency,
+          Expanded(child: details),
+          Icon(Icons.place),
+        ]),
       ),
     );
   }
