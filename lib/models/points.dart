@@ -127,65 +127,80 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4, top: 4),
-      child: InkWell(
-        onTap: () {
-          print("click");
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: PreferredSize(
-                        child: Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Theme.of(context)
-                                        .scaffoldBackgroundColor
-                                        .withAlpha(200),
-                                    Colors.transparent,
-                                  ],
+        padding: const EdgeInsets.only(bottom: 4, top: 4),
+        child: InkWell(
+          onTap: () {
+            print("click");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Scaffold(
+                        appBar: PreferredSize(
+                          child: Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Theme.of(context)
+                                          .scaffoldBackgroundColor
+                                          .withAlpha(200),
+                                      Colors.transparent,
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            AppBar(
-                              // brightness: Brightness.light,
-                              backwardsCompatibility: false,
-                              systemOverlayStyle: SystemUiOverlayStyle(
-                                statusBarColor: Colors.transparent,
-                              ),
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              leading: GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
+                              AppBar(
+                                // brightness: Brightness.light,
+                                backwardsCompatibility: false,
+                                systemOverlayStyle: SystemUiOverlayStyle(
+                                  statusBarColor: Colors.transparent,
+                                ),
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                leading: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          preferredSize: Size.fromHeight(56),
                         ),
-                        preferredSize: Size.fromHeight(56),
-                      ),
-                      body: MapTab(new SearchItem(
-                          photo: point['name'], // It is fuzzy and not needed.
-                          name: point['name'],
-                          location: point['location'])))));
-          //aha buraya harita zıkkımı eklenecek
-        },
-        child: Row(children: <Widget>[
-          urgency,
-          Expanded(child: details),
-          Icon(Icons.place),
-        ]),
-      ),
-    );
+                        body: MapTab(new SearchItem(
+                            photo: point['name'], // It is fuzzy and not needed.
+                            name: point['name'],
+                            location: point['location'])))));
+            //aha buraya harita zıkkımı eklenecek
+          },
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Container(
+              padding: EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0, 1),
+                      blurRadius: 2.0)
+                ],
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.grey,
+              ),
+              child: Row(children: <Widget>[
+                urgency,
+                Expanded(child: details),
+                Icon(Icons.place),
+              ]),
+            ),
+          ),
+        ));
   }
 }

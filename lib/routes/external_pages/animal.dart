@@ -35,6 +35,7 @@ class AnimalDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(this.location);
     return Scaffold(
       // backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -272,7 +273,7 @@ class AnimalDetail extends StatelessWidget {
                                         ),
                                         preferredSize: Size.fromHeight(56),
                                       ),
-                                      body: MapTab(new SearchItem(
+                                      body: MapTab(SearchItem(
                                           photo: this.photo,
                                           name: this.name,
                                           location: this.location)))));

@@ -16,7 +16,7 @@ class BaseBodyLayout extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: this.child /* add child content here */,
+      child: Padding(padding: EdgeInsets.all(8), child: this.child),
     );
   }
 }
