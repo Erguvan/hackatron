@@ -8,7 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:putty/models/search_item.dart';
 
 class MapTab extends StatefulWidget {
-  MapTab({Key? key}) : super(key: key);
+  MapTab(SearchItem searchItem, {Key? key}) : super(key: key);
 
   @override
   MapTabState createState() => MapTabState();

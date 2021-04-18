@@ -4,7 +4,7 @@ import 'package:putty/const.dart';
 import 'package:putty/models/search_item.dart';
 import 'package:putty/models/search_tab_click_controller.dart';
 import 'package:putty/routes/home/account_tab.dart';
-import 'package:putty/routes/home/map_tab.dart';
+import 'package:putty/routes/external_pages/map_tab.dart';
 import 'package:putty/routes/home/animals_tab.dart';
 import 'package:putty/routes/home/points_tab.dart';
 
@@ -73,7 +73,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.all(8),
-                  child: AnimalTab(searchTabClickController: _searchTabClickController),
+                  child: AnimalTab(
+                      searchTabClickController: _searchTabClickController),
                 ),
                 PointsTab(searchTabClickController: _searchTabClickController),
                 AccountTab(),

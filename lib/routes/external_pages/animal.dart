@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:putty/models/search_item.dart';
+import 'package:putty/routes/external_pages/map_tab.dart';
 
 /*
 name: String
@@ -186,7 +188,8 @@ class AnimalDetail extends StatelessWidget {
                   height: 16,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
+                  padding:
+                      EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -220,28 +223,86 @@ class AnimalDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).accentColor.withOpacity(0.5),
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: Offset(0, 0),
+                      InkWell(
+                        onTap: () {
+                          print("click");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Scaffold(
+                                      appBar: PreferredSize(
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter,
+                                                  colors: [
+                                                    Theme.of(context)
+                                                        .scaffoldBackgroundColor
+                                                        .withAlpha(200),
+                                                    Colors.transparent,
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            AppBar(
+                                              // brightness: Brightness.light,
+                                              backwardsCompatibility: false,
+                                              systemOverlayStyle:
+                                                  SystemUiOverlayStyle(
+                                                statusBarColor:
+                                                    Colors.transparent,
+                                              ),
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              elevation: 0,
+                                              leading: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Icon(
+                                                  Icons.arrow_back,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        preferredSize: Size.fromHeight(56),
+                                      ),
+                                      body: MapTab(new SearchItem(
+                                          photo: this.photo,
+                                          name: this.name,
+                                          location: this.location)))));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
                             ),
-                          ],
-                          color: Theme.of(context).accentColor,
-                        ),
-                        child: Text(
-                          "Contact Me",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context)
+                                    .accentColor
+                                    .withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                            color: Theme.of(context).accentColor,
+                          ),
+                          child: Text(
+                            "Show on Map",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
