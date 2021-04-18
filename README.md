@@ -1,6 +1,8 @@
 # putty
 
-A new Flutter project.
+[![Putty Website Deploy](https://github.com/Erguvan/hackatron/actions/workflows/deploy.yaml/badge.svg)](https://github.com/Erguvan/hackatron/actions/workflows/deploy.yaml)
+
+Putty is a application for begetting a social responsibility about animals in cities.
 
 ## Getting Started
 
