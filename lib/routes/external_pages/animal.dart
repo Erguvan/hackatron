@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /*
 name: String
@@ -33,30 +34,44 @@ class AnimalDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.grey[800],
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(
-              Icons.more_horiz,
-              color: Colors.grey[800],
+      appBar: PreferredSize(
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Theme.of(context).scaffoldBackgroundColor.withAlpha(200),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+            AppBar(
+              // brightness: Brightness.light,
+              backwardsCompatibility: false,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        preferredSize: Size.fromHeight(56),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,7 +98,7 @@ class AnimalDetail extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.white,
+            // color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -98,7 +113,7 @@ class AnimalDetail extends StatelessWidget {
                           Text(
                             this.name,
                             style: TextStyle(
-                              color: Colors.grey[800],
+                              color: Colors.grey[400],
                               fontWeight: FontWeight.bold,
                               fontSize: 24,
                             ),
@@ -137,7 +152,7 @@ class AnimalDetail extends StatelessWidget {
                   padding: EdgeInsets.all(8),
                   child: Row(
                     children: [
-                      buildPetFeature(this.age.toString() + " months", "Age"),
+                      buildPetFeature("${this.age.toString()} months", "Age"),
                       buildPetFeature(this.kind, "Kind"),
                       buildPetFeature(this.expected, "Expected"),
                     ],
@@ -148,7 +163,7 @@ class AnimalDetail extends StatelessWidget {
                   child: Text(
                     "About It / Story",
                     style: TextStyle(
-                      color: Colors.grey[800],
+                      color: Colors.grey[400],
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                     ),
@@ -171,8 +186,7 @@ class AnimalDetail extends StatelessWidget {
                   height: 16,
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
+                  padding: EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -207,21 +221,20 @@ class AnimalDetail extends StatelessWidget {
                         ],
                       ),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withOpacity(0.5),
+                              color: Theme.of(context).accentColor.withOpacity(0.5),
                               spreadRadius: 3,
                               blurRadius: 5,
                               offset: Offset(0, 0),
                             ),
                           ],
-                          color: Colors.blue[300],
+                          color: Theme.of(context).accentColor,
                         ),
                         child: Text(
                           "Contact Me",
@@ -246,7 +259,7 @@ class AnimalDetail extends StatelessWidget {
   buildPetFeature(String value, String feature) {
     return Expanded(
       child: Container(
-        height: 70,
+        // height: 70,
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
@@ -259,14 +272,16 @@ class AnimalDetail extends StatelessWidget {
           ),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               value,
               style: TextStyle(
-                color: Colors.grey[800],
+                color: Colors.grey[400],
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 4,
@@ -277,6 +292,7 @@ class AnimalDetail extends StatelessWidget {
                 color: Colors.grey[600],
                 fontSize: 14,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
