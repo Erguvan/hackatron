@@ -189,8 +189,7 @@ class AnimalDetail extends StatelessWidget {
                   height: 16,
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
+                  padding: EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -228,68 +227,27 @@ class AnimalDetail extends StatelessWidget {
                         onTap: () {
                           print("click");
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Scaffold(
-                                      appBar: PreferredSize(
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                  begin: Alignment.topCenter,
-                                                  end: Alignment.bottomCenter,
-                                                  colors: [
-                                                    Theme.of(context)
-                                                        .scaffoldBackgroundColor
-                                                        .withAlpha(200),
-                                                    Colors.transparent,
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            AppBar(
-                                              // brightness: Brightness.light,
-                                              backwardsCompatibility: false,
-                                              systemOverlayStyle:
-                                                  SystemUiOverlayStyle(
-                                                statusBarColor:
-                                                    Colors.transparent,
-                                              ),
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              elevation: 0,
-                                              leading: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Icon(
-                                                  Icons.arrow_back,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        preferredSize: Size.fromHeight(56),
-                                      ),
-                                      body: MapTab(SearchItem(
-                                          photo: this.photo,
-                                          name: this.name,
-                                          location: this.location)))));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AnimalMapPage(
+                                item: SearchItem(
+                                  photo: this.photo,
+                                  name: this.name,
+                                  location: this.location,
+                                ),
+                              ),
+                            ),
+                          );
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 20),
+                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(20),
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context)
-                                    .accentColor
-                                    .withOpacity(0.5),
+                                color: Theme.of(context).accentColor.withOpacity(0.5),
                                 spreadRadius: 3,
                                 blurRadius: 5,
                                 offset: Offset(0, 0),
@@ -359,6 +317,56 @@ class AnimalDetail extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AnimalMapPage extends StatelessWidget {
+  final SearchItem item;
+
+  AnimalMapPage({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Theme.of(context).scaffoldBackgroundColor.withAlpha(200),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+            AppBar(
+              // brightness: Brightness.light,
+              backwardsCompatibility: false,
+              systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        preferredSize: Size.fromHeight(56),
+      ),
+      body: MapTab(item),
     );
   }
 }

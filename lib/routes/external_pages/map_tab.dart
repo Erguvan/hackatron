@@ -8,13 +8,27 @@ import 'package:geocoding/geocoding.dart';
 import 'package:putty/models/search_item.dart';
 
 class MapTab extends StatefulWidget {
-  MapTab(SearchItem searchItem, {Key? key}) : super(key: key);
+  MapTab(this.searchItem, {Key? key}) : super(key: key);
+
+  final SearchItem? searchItem;
 
   @override
   MapTabState createState() => MapTabState();
 }
 
 class MapTabState extends State<MapTab> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.searchItem != null) {
+      _lastSearchItem = widget.searchItem!;
+      Future.delayed(
+        Duration(milliseconds: 250),
+        () => goToLocation(widget.searchItem!),
+      );
+    }
+  }
+
   void goToLocation(SearchItem item) {
     try {
       var latlng = item.location.split(',');
@@ -89,8 +103,7 @@ class MapTabState extends State<MapTab> {
             onScaleStart: _onScaleStart,
             onScaleUpdate: _onScaleUpdate,
             onScaleEnd: (details) {
-              print(
-                  "Location: ${controller.center.latitude}, ${controller.center.longitude}");
+              print("Location: ${controller.center.latitude}, ${controller.center.longitude}");
             },
             child: Stack(
               children: [
@@ -139,6 +152,7 @@ class MapTabState extends State<MapTab> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: 'zoomin',
             onPressed: _onDoubleTap,
             tooltip: 'Bigger',
             child: Icon(Icons.add),
@@ -146,6 +160,7 @@ class MapTabState extends State<MapTab> {
           ),
           SizedBox(height: 8),
           FloatingActionButton(
+            heroTag: 'zoomout',
             onPressed: _onNegativeDoubleTap,
             tooltip: 'Smaller',
             child: Icon(Icons.remove),
@@ -200,8 +215,7 @@ class MapTabState extends State<MapTab> {
                   controller.center.longitude,
                 ),
                 builder: (_, AsyncSnapshot<List<Placemark>> snapshot) {
-                  var tempLocation =
-                      '${controller.center.latitude}, ${controller.center.longitude}';
+                  var tempLocation = '${controller.center.latitude}, ${controller.center.longitude}';
                   try {
                     if (snapshot.data == null) {
                       if (snapshot.hasError) {
