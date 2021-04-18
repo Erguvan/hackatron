@@ -35,7 +35,7 @@ class AnimalDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.location);
+    //print(this.location);
     return Scaffold(
       // backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -189,7 +189,8 @@ class AnimalDetail extends StatelessWidget {
                   height: 16,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
+                  padding:
+                      EdgeInsets.only(right: 16, left: 16, top: 16, bottom: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -225,7 +226,7 @@ class AnimalDetail extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          print("click");
+                          //print("click");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -240,14 +241,17 @@ class AnimalDetail extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(20),
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context).accentColor.withOpacity(0.5),
+                                color: Theme.of(context)
+                                    .accentColor
+                                    .withOpacity(0.5),
                                 spreadRadius: 3,
                                 blurRadius: 5,
                                 offset: Offset(0, 0),

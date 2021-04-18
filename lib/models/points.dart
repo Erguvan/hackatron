@@ -130,7 +130,7 @@ class Points extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 4, top: 4),
         child: InkWell(
           onTap: () {
-            print("click");
+            //print("click");
             Navigator.push(
                 context,
                 MaterialPageRoute(

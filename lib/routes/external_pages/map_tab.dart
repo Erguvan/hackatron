@@ -103,7 +103,8 @@ class MapTabState extends State<MapTab> {
             onScaleStart: _onScaleStart,
             onScaleUpdate: _onScaleUpdate,
             onScaleEnd: (details) {
-              print("Location: ${controller.center.latitude}, ${controller.center.longitude}");
+              print(
+                  "Location: ${controller.center.latitude}, ${controller.center.longitude}");
             },
             child: Stack(
               children: [
@@ -215,7 +216,8 @@ class MapTabState extends State<MapTab> {
                   controller.center.longitude,
                 ),
                 builder: (_, AsyncSnapshot<List<Placemark>> snapshot) {
-                  var tempLocation = '${controller.center.latitude}, ${controller.center.longitude}';
+                  var tempLocation =
+                      '${controller.center.latitude}, ${controller.center.longitude}';
                   try {
                     if (snapshot.data == null) {
                       if (snapshot.hasError) {

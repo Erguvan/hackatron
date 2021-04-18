@@ -98,7 +98,7 @@ class Animal extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12.0),
         onTap: () {
-          print("click");
+          //print("click");
           Navigator.push(
               context,
               MaterialPageRoute(
